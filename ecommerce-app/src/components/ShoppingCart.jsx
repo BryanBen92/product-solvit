@@ -1,17 +1,31 @@
-import ProductCard from './ProductCard';
+import { useCart } from '../context/CartContext';
 
-export default function ProductGrid({ products }) {
+export default function ShoppingCart() {
+  const { cart, dispatch } = useCart();
+
+  const removeItem = (id) => {
+    dispatch({ type: 'REMOVE_ITEM', payload: id });
+  };
+
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      {products.length > 0 ? (
-        products.map(product => (
-          <ProductCard key={product.id} product={product} />
-        ))
+    <div className="p-4 border rounded-lg">
+      <h2 className="text-xl font-bold mb-4">Shopping Cart</h2>
+      {cart.items.length > 0 ? (
+        <ul>
+          {cart.items.map((item) => (
+            <li key={item.id} className="flex justify-between mb-2">
+              <span>{item.name}</span>
+              <button
+                onClick={() => removeItem(item.id)}
+                className="text-red-500"
+              >
+                Remove
+              </button>
+            </li>
+          ))}
+        </ul>
       ) : (
-        <div className="col-span-full text-center py-12">
-          <p className="text-gray-500 text-lg">No products match your filters.</p>
-          <p className="mt-2">Try adjusting your filter criteria.</p>
-        </div>
+        <p>Your cart is empty.</p>
       )}
     </div>
   );
