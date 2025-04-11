@@ -1,9 +1,10 @@
 
+
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { CartItem as CartItemType } from '../context/CartContext';
 import { Minus, Plus, Trash2 } from 'lucide-react';
-
+//
 interface CartItemProps {
   item: CartItemType;
   onUpdateQuantity: (id: number, quantity: number) => void;
