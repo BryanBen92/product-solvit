@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { ShoppingCart, Menu, X } from 'lucide-react';
+import { ShoppingCart as CartIcon, Menu, X } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import ShoppingCart from './ShoppingCart';
 
@@ -33,7 +33,7 @@ const Navbar: React.FC = () => {
               className="relative" 
               onClick={() => setIsCartOpen(true)}
             >
-              <ShoppingCart className="h-5 w-5" />
+              <CartIcon className="h-5 w-5" />
               {getCartItemCount() > 0 && (
                 <span className="absolute -top-1 -right-1 bg-blue-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
                   {getCartItemCount()}
